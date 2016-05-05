@@ -1,5 +1,8 @@
 package student;
+
 import java.util.List;
+
+import java.util.function.Predicate;
 
 /**
  * Display reminders of students having a birthday soon.
@@ -13,16 +16,17 @@ public class StudentApp {
 	 * @param students list of students
 	 * @param month the month to use in selecting bithdays
 	 */
-	public void filterAndPrint( List<Student> students, int month ) {
-		for(Student s : students ) {
-			if (s.getBirthdate().getMonthValue() == month)
-	                  System.out.println( s );
+	public void filterAndPrint( List<Student> students, Predicate<Student> filter ) {
+		for(Student student : students ) {
+			if (filter.test(student))
+	                  System.out.println( student );
 		}
 	}
 	
 	public static void main(String[] args) {
 		List<Student> students = Registrar.getInstance().getStudents();
+		Predicate<Student> check = (student) -> student.getBirthdate().getDayOfMonth() == 1;
 		StudentApp app = new StudentApp();
-		app.filterAndPrint(students, 5 /* may */);
+		app.filterAndPrint(students, check);
 	}
 }
