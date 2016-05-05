@@ -1,8 +1,10 @@
 package student;
 
+import java.util.Comparator;
 import java.util.List;
-
+import java.util.function.Consumer;
 import java.util.function.Predicate;
+
 
 /**
  * Display reminders of students having a birthday soon.
@@ -16,17 +18,17 @@ public class StudentApp {
 	 * @param students list of students
 	 * @param month the month to use in selecting bithdays
 	 */
-	public void filterAndPrint( List<Student> students, Predicate<Student> filter ) {
-		for(Student student : students ) {
-			if (filter.test(student))
-	                  System.out.println( student );
-		}
+	public void filterAndPrint( List<Student> students, Predicate<Student> filter, Consumer<Student> action , Comparator<Student> compare) {
+		students.stream().filter(filter).sorted(compare).forEach(action);
 	}
 	
 	public static void main(String[] args) {
 		List<Student> students = Registrar.getInstance().getStudents();
-		Predicate<Student> check = (student) -> student.getBirthdate().getDayOfMonth() == 1;
+		Predicate<Student> filter = (student) -> student.getBirthdate().getMonthValue() == 1;
+		Consumer<Student> action = (student) -> System.out.printf("%s %s will have birthday on %d %s\n", student.getFirstname(), student.getLastname(), student.getBirthdate().getDayOfMonth(), student.getBirthdate().getMonth());
+		//Comparator<Student> byName = (a, b) -> a.getFirstname().charAt(0) - b.getFirstname().charAt(0);
+		Comparator<Student> byBirthday = (a, b) -> a.getBirthdate().getDayOfMonth() - b.getBirthdate().getDayOfMonth();
 		StudentApp app = new StudentApp();
-		app.filterAndPrint(students, check);
+		app.filterAndPrint(students, filter, action, byBirthday);
 	}
 }
