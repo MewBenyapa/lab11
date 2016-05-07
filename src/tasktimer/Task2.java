@@ -7,9 +7,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Task2 implements Runnable {
-
+	
+	/**
+	 * Create an attribute
+	 */
 	private BufferedReader br;
-
+	
+	
+	/**
+	 * Initialize
+	 */
 	public Task2() {
 		try {
 			br = new BufferedReader( new InputStreamReader(Dictionary.getWordsAsStream()) );
@@ -19,6 +26,9 @@ public class Task2 implements Runnable {
 		}
 	}
 
+	/**
+	 * For run the task
+	 */
 	@Override
 	public void run() {
 
@@ -41,6 +51,9 @@ public class Task2 implements Runnable {
 
 	}
 
+	/**
+	 * @return String
+	 */
 	public String toString() {
 		return "read words using BufferedReader.readLine() with a loop";
 	}

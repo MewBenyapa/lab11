@@ -8,10 +8,16 @@ public class Task1 implements Runnable {
 
 	private Scanner in;
 	
+	/**
+	 * Initialize 
+	 */
 	public Task1() {
 		in =  new Scanner(Dictionary.getWordsAsStream());
 	}
 	
+	/**
+	 * For run the task
+	 */
 	@Override
 	public void run() {
 		// perform the task
@@ -26,6 +32,10 @@ public class Task1 implements Runnable {
 		out.printf("Average length of %,d words is %.2f\n", count, averageLength);
 	}
 
+	/**
+	 * 
+	 * @return String
+	 */
 	public String toString() {
 		return "read words using Scanner and a while loop" ;
 	}

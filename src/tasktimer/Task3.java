@@ -10,8 +10,14 @@ import java.util.function.IntConsumer;
 
 public class Task3 implements Runnable {
 
+	/**
+	 * Create an attribute
+	 */
 	private BufferedReader br;
 
+	/**
+	 * Initialize
+	 */
 	public Task3() {
 		try {
 			br = new BufferedReader( new InputStreamReader(Dictionary.getWordsAsStream()) );
@@ -21,6 +27,9 @@ public class Task3 implements Runnable {
 		}	
 	}
 
+	/**
+	 * For run the task
+	 */
 	@Override
 	public void run() {
 		// initialize: open the words file as InputStream  
@@ -56,6 +65,9 @@ public class Task3 implements Runnable {
 		public int getCount() { return count; }
 	}
 
+	/**
+	 * @return String
+	 */
 	public String toString() {
 		return "read words using BufferedReader and Stream";
 	}

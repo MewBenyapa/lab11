@@ -8,6 +8,9 @@ import java.io.InputStreamReader;
 
 public class Task5 implements Runnable {
 
+	/**
+	 * Create attributes
+	 */
 	static final int MAXCOUNT = 50_000;
 	private BufferedReader br;
 
@@ -20,6 +23,9 @@ public class Task5 implements Runnable {
 		}
 	}
 
+	/**
+	 * For run the task
+	 */
 	@Override
 	public void run() {
 
